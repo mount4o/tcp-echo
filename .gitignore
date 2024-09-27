@@ -1,0 +1,53 @@
+# Compiled Object files
+*.o
+*.obj
+*.lo
+*.slo
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.lib
+
+# Executable files
+*.exe
+*.out
+*.app
+tcp_echo_server
+tcp_echo_client
+server_tests
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Build directories
+build/
+Debug/
+Release/
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Temporary files and folders
+*.tmp
+*.swp
+*~
+
+# MacOS files
+.DS_Store
+
+# Windows files
+Thumbs.db
