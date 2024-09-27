@@ -6,7 +6,7 @@ This project is a cross-platform TCP Echo Server application that fulfills the f
 
 - **TCP Echo Functionality**: The server accepts TCP connections, receives newline-terminated text messages, and sends them back to clients.
 - **Client Tracking**: The server keeps track of the number of connected clients and the number of messages exchanged with each client.
-- **Statistics Command**: Clients can request server statistics by sending a specific command, which returns the number of connected clients and the message count for each.
+- **Statistics Command**: Clients can request server statistics by sending a specific command, which returns the number of connected clients and the message count for each. The initial expected value for the command in question is "#stats" (null terminated at the end). The value can be changed in `defines.h`.
 - **Cross-Platform Support**: The application is designed to run on both POSIX-compliant systems (Linux, macOS) and Windows.
 
 
