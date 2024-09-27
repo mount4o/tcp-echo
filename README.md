@@ -32,6 +32,7 @@ tcp_echo/
 │   └── server_tests.c          # Unit tests for server-side functionality
 ├── CMakeLists.txt              # CMake build configuration
 └── README.md                   # Project documentation
+```
 
 ## Build Instructions
 
