@@ -46,7 +46,7 @@ tcp_echo/
 1. **Clone the Repository**:
 
     ```sh
-    git clone [<repository-url>](https://github.com/mount4o/tcp-echo)
+    git clone https://github.com/mount4o/tcp-echo
     cd tcp_echo
     ```
 
