@@ -38,7 +38,7 @@ tcp_echo/
 
 ### Prerequisites
 
-- **CMake**: Ensure CMake is installed on your system. You can download it from [cmake.org](https://cmake.org).
+- **CMake**: Ensure CMake is installed on your system
 - **Compiler**: A C compiler (e.g., GCC, Clang for POSIX systems, or MSVC for Windows).
 
 ### Building the Project
@@ -46,7 +46,7 @@ tcp_echo/
 1. **Clone the Repository**:
 
     ```sh
-    git clone <repository-url>
+    git clone [<repository-url>](https://github.com/mount4o/tcp-echo)
     cd tcp_echo
     ```
 
@@ -82,7 +82,7 @@ tcp_echo/
 After building the project, three main executables will be generated:
 
 1. **`tcp_echo_server`**:
-    - **Description**: This is the TCP Echo Server that listens for incoming connections from clients, echoes received messages, and handles statistics.
+    - **Description**: This is the TCP Echo Server that listens for incoming connections from clients, echoes received messages, and handles statistics. Providing a port is optional and the default port value is `122` (configurable in `defines.h`).
     - **Usage**:
 
         ```sh
@@ -96,7 +96,7 @@ After building the project, three main executables will be generated:
         ```
 
 2. **`tcp_echo_client`** (POSIX Only):
-    - **Description**: A utility client application used to test the TCP Echo Server by sending messages to it and receiving the echoed responses.
+    - **Description**: A utility client application used to test the TCP Echo Server by sending messages to it and receiving the echoed responses.Providing a port is optional and the default port value is `122` (configurable in `defines.h`).
     - **Usage**:
 
         ```sh
@@ -110,7 +110,7 @@ After building the project, three main executables will be generated:
         ```
 
 3. **`server_tests`**:
-    - **Description**: A set of unit tests for the server-side functionality, including message processing and statistics handling.
+    - **Description**: Some unit tests for the server-side message processing functionality.
     - **Usage**:
 
         ```sh
@@ -125,24 +125,6 @@ After building the project, three main executables will be generated:
 
     - **Output**: The test results will be printed to the console, indicating whether all tests passed.
 
-## Running Tests
-
-Unit tests are provided to verify the functionality of the TCP Echo Server. Follow these steps to run the tests:
-
-1. **Build the Tests**:
-
-    ```sh
-    make server_tests
-    ```
-
-2. **Run the Tests**:
-
-    ```sh
-    ./server_tests
-    ```
-
-3. **Check Results**: Ensure that all tests pass. The test output will indicate any issues that need to be addressed.
-
 ## Design Decisions
 
 ### Abstraction Layers
@@ -154,8 +136,8 @@ To ensure cross-platform compatibility, the project employs abstraction layers f
 
 ### Error Handling
 
-The project uses consistent error handling through macros defined in `error_handling.h`. This approach centralizes error reporting and ensures consistent behavior across the application.
+The project has simple error handling through a macro defined in `error_handling.h`.
 
 ### Message Handling
 
-The `msg_handling.c` module manages the logic for processing incoming messages and responding to clients, including handling the statistics command. This separation of concerns enhances modularity and testability.
+The `msg_handling.c` file manages the logic for processing incoming messages and creating the responses to clients, including handling the statistics command.
