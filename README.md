@@ -129,7 +129,7 @@ After building the project, three main executables will be generated:
 
 ### Abstraction Layers
 
-To ensure cross-platform compatibility, the project employs abstraction layers for sockets and threading:
+To ensure cross-platform compatibility, the project employs two thin abstraction layers for sockets and threading:
 
 - **Socket Abstraction**: Abstracts platform-specific socket operations, allowing seamless functionality on both POSIX and Windows platforms.
 - **Thread Abstraction**: Similarly, threading operations are abstracted to ensure compatibility across different operating systems.
@@ -140,4 +140,12 @@ The project has simple error handling through a macro defined in `error_handling
 
 ### Message Handling
 
-The `msg_handling.c` file manages the logic for processing incoming messages and creating the responses to clients, including handling the statistics command.
+The `msg_handling.c` file manages the logic for processing incoming messages and creating responses to clients, including handling the statistics command.
+
+### Multi-Client Handling
+
+The server is designed to handle multiple client connections concurrently. This is achieved through a multithreaded approach where each client connection is managed by a separate thread.
+
+### Shared Data Management
+
+Each client's message count and the total number of connected users are stored in static variables. Mutexes are used to synchronize access to them, ensuring that the data remains consistent even when multiple threads attempt to read or modify it simultaneously.
