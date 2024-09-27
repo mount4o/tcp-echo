@@ -1,8 +1,10 @@
 #ifndef SOCKETS_H
 #define SOCKETS_H
 
-#ifdef PLATFORM_WINDOWS
+#ifdef _WIN32 // Check for Windows
 #include <winsock2.h>
+#include <ws2tcpip.h>  // For modern socket functions like inet_pton, etc.
+#pragma comment(lib, "ws2_32.lib")  // Link with Ws2_32.lib
 #else
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -12,7 +14,6 @@
 #endif
 
 #include "error_handling.h"
-
 #include <stdlib.h>
 
 int init_socket(int port);
@@ -34,5 +35,5 @@ void close_socket_conn(int* client_fd_ptr);
 int recv_msg(int* client_fd_ptr, char buf[], int buf_size);
 
 void close_socket(int* server_fd);
-  
+
 #endif // SOCKETS_H
