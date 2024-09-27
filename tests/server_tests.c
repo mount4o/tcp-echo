@@ -26,7 +26,7 @@ void test_message_processing(void) {
     assert(strcmp(response, "Hello, World!") == 0);
     assert(user_msg_count[user_id] == 1);
 
-    // Test #statistics command
+    // Test command that returns user connection stats
     sprintf(buffer, "%s\n", RETURN_MSG_COUNT_CMD);
     result = process_msg(buffer, strlen(buffer), user_id, user_msg_count, num_connected_users, &user_stats_mutex, response, sizeof(response));
     assert(result == 1);

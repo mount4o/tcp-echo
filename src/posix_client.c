@@ -21,11 +21,9 @@ int main(int argc, char *argv[]) {
     struct sockaddr_in server_addr;
     char buffer[BUFFER_SIZE];
 
-    // Create socket
     sock_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (sock_fd < 0) on_error("Could not create socket");
 
-    // Set server address
     memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(port);
@@ -33,7 +31,6 @@ int main(int argc, char *argv[]) {
         on_error("Invalid address or address not supported");
     }
 
-    // Connect to the server
     if (connect(sock_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
         on_error("Connection failed");
     }
@@ -44,12 +41,10 @@ int main(int argc, char *argv[]) {
         printf("Enter message: ");
         fgets(buffer, BUFFER_SIZE, stdin);
 
-        // Send message to server
         if (send(sock_fd, buffer, strlen(buffer), 0) < 0) {
             on_error("Send failed");
         }
 
-        // Receive response from server
         int read_size = recv(sock_fd, buffer, BUFFER_SIZE, 0);
         if (read_size < 0) {
             on_error("Recv failed");
@@ -63,8 +58,6 @@ int main(int argc, char *argv[]) {
         printf("Server response: %s\n", buffer);
     }
 
-    // Close the socket
     close(sock_fd);
-
     return 0;
 }

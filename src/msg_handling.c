@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-// Generate status report upon specific command
+// Generate user connection statistics report
 static void
 generate_user_stats_report(unsigned int user_id, int user_msg_count[], 
                            unsigned int num_connected_users, char* response) {

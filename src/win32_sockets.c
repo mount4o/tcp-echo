@@ -10,12 +10,10 @@ int init_socket(int port) {
     WSADATA wsa_data;
     int err;
 
-    // Initialize WinSock
     if (WSAStartup(MAKEWORD(2, 2), &wsa_data) != 0) {
         on_error("WSAStartup failed\n");
     }
 
-    // Create socket
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server_fd == INVALID_SOCKET) {
         on_error("Could not create socket\n");
@@ -72,7 +70,9 @@ int recv_msg(int* client_fd_ptr, char buf[], int buf_size) {
 void close_socket(int* server_fd) {
     if (server_fd && *server_fd != INVALID_SOCKET) {
         closesocket(*server_fd);
-        *server_fd = INVALID_SOCKET; // Invalidate the socket after closing
-        WSACleanup(); // Clean up WinSock when done
+        // Invalidate the socket after closing
+        *server_fd = INVALID_SOCKET;
+        // Clean up WinSock when done
+        WSACleanup();
     }
 }

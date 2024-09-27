@@ -34,7 +34,8 @@ void accept_socket_conn(int* client_fd_ptr, int server_fd) {
 void close_socket_conn(int* client_fd_ptr) {
     if (client_fd_ptr && *client_fd_ptr >= 0) {
         close(*client_fd_ptr);
-        *client_fd_ptr = -1; // Invalidate the file descriptor after closing
+        // Invalidate the file descriptor after closing
+        *client_fd_ptr = -1;
     }
 }
 
@@ -45,6 +46,7 @@ int recv_msg(int* client_fd_ptr, char buf[], int buf_size) {
 void close_socket(int* server_fd) {
     if (server_fd && *server_fd >= 0) {
         close(*server_fd);
-        *server_fd = -1; // Invalidate the file descriptor after closing
+        // Invalidate the file descriptor after closing
+        *server_fd = -1;
     }
 }
