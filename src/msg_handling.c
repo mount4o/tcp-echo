@@ -41,6 +41,13 @@ int process_msg(char* buf, int len, unsigned int user_id, int user_msg_count[],
         if (buf[i] == '\n') {
             message[message_len] = '\0'; // Null-terminate the message
 
+            // Check if the message is empty
+            if (message_len == 0) {
+                strncpy(response, "Empty message received", response_size - 1);
+                response[response_size - 1] = '\0'; // Ensure null-termination
+                return 1;
+            }
+            
             // If the user requested user stats
             if (strcmp(message, RETURN_MSG_COUNT_CMD) == 0) {
                 generate_user_stats_report(user_id, user_msg_count,
