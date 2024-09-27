@@ -30,22 +30,33 @@ set(MESSAGE_HANDLER_SOURCE src/msg_handling.c)
 # Add the server executable target
 add_executable(tcp_echo_server src/server.c ${PLATFORM_SOURCES} ${MESSAGE_HANDLER_SOURCE})
 
-# Add the client executable target
-add_executable(tcp_echo_client src/client.c ${PLATFORM_SOURCES})
+# Add the client executable target (POSIX only)
+if(NOT WIN32)
+    add_executable(tcp_echo_client src/client.c ${PLATFORM_SOURCES})
+endif()
 
 # Add the unit tests executable target
 add_executable(server_tests tests/server_tests.c ${PLATFORM_SOURCES} ${MESSAGE_HANDLER_SOURCE})
 
 # Specify compile options including debug symbols
-target_compile_options(tcp_echo_server PRIVATE -Wall -Wextra -pedantic -g)
-target_compile_options(tcp_echo_client PRIVATE -Wall -Wextra -pedantic -g)
-target_compile_options(server_tests PRIVATE -Wall -Wextra -pedantic -g)
+if(MSVC)
+    # Use appropriate warning level for MSVC
+    target_compile_options(tcp_echo_server PRIVATE /W4)
+    target_compile_options(server_tests PRIVATE /W4)
+    if(NOT WIN32)
+        target_compile_options(tcp_echo_client PRIVATE /W4)
+    endif()
+else()
+    # Use GCC/Clang specific warnings
+    target_compile_options(tcp_echo_server PRIVATE -Wall -Wextra -pedantic -g)
+    target_compile_options(server_tests PRIVATE -Wall -Wextra -pedantic -g)
+    if(NOT WIN32)
+        target_compile_options(tcp_echo_client PRIVATE -Wall -Wextra -pedantic -g)
+    endif()
+endif()
 
-# Link against the required threading library based on platform
+# Link against the pthread library if required (for POSIX systems)
 if(UNIX)
     target_link_libraries(tcp_echo_server PRIVATE pthread)
     target_link_libraries(server_tests PRIVATE pthread)
-elseif(WIN32)
-    target_link_libraries(tcp_echo_server PRIVATE ws2_32)
-    target_link_libraries(server_tests PRIVATE ws2_32)
 endif()
