@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
+// Generate status report upon specific command
 static void
 generate_user_stats_report(unsigned int user_id, int user_msg_count[], 
                            unsigned int num_connected_users, char* response) {
@@ -24,6 +25,7 @@ generate_user_stats_report(unsigned int user_id, int user_msg_count[],
              "\nTotal connected users: %u\n", num_connected_users);
 }
 
+// Cleanup local accumulation buffer
 static void cleanup(char msg_buf[], int* msg_len) {
     *msg_len = 0;
     memset(msg_buf, 0, BUFFER_SIZE);
@@ -75,3 +77,4 @@ int process_msg(char* buf, int len, unsigned int user_id, int user_msg_count[],
     // Message not yet complete, keep what we have and expect more in upcoming packets
     return 0;
 }
+
