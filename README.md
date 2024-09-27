@@ -68,7 +68,7 @@ tcp_echo/
     - **On Windows**:
 
         ```sh
-        cmake .. -G "MinGW Makefiles"  # or "Visual Studio" for MSVC
+        cmake .. -G "Visual Studio 16 2019" # should work with higher versions of Visual Studio, as well
         ```
 
 4. **Build the Project**:
