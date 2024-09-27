@@ -131,7 +131,7 @@ After building the project, three main executables will be generated:
 
 To ensure cross-platform compatibility, the project employs two thin abstraction layers for sockets and threading:
 
-- **Socket Abstraction**: Abstracts platform-specific socket operations, allowing seamless functionality on both POSIX and Windows platforms.
+- **Socket Abstraction**: Abstracts platform-specific socket operations (server side only), allowing seamless functionality on both POSIX and Windows platforms.
 - **Thread Abstraction**: Similarly, threading operations are abstracted to ensure compatibility across different operating systems.
 
 ### Error Handling
